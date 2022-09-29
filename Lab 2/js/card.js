@@ -9,13 +9,7 @@ export default class Card {
   markDone(target) {
     // to mark a card as done, we add a class .bingo__card--done to it
     // 🔥🔥🔥 TODO 5: mark or unmark (toggle) a bingo card when clicked
-    console.log(target);
-    let cardDone = document.createElement("div");
-    cardDone.addEventListener("mouseover", (e) => {
-      console.log("Marking card as done");
-    })
-    
-    // hint: use class .bingo__card--done
+
   }
 
   render(counter) {
@@ -27,7 +21,9 @@ export default class Card {
 
     // 🔥🔥🔥 TODO4: when we click an item, we want to check for winners and we want to save the selection to storage
     card.addEventListener("click", (e) => {
-      // this.markDone(e.target);
+    this.markDone(e.target)
+    card.classList.toggle("bingo__card--done");
+
       // call checkWinner() on the Bingo class
       // try to call the save() method on the Bingo class
     });

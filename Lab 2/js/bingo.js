@@ -36,6 +36,8 @@ export default class Bingo {
 
     // we start by rendering the cards to the screen
     this.renderCards();
+    Bingo.checkWinner();
+    Bingo.save();
 
     // then we load the saved bingo cards from localstorage to mark them as done
     Bingo.load();
