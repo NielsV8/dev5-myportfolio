@@ -41,19 +41,10 @@ export default class Bingo {
     Bingo.load();
   }
 
-  renderCards() {
-    // this function renders the cards to the screen  
-    // 🔥🔥🔥 TODO 2
-    // loop through all the cards in the array and create a new instance of a Card()
-    // for()
-    // create a new card object
-    // let card = new Card(this.cards[i]);
-    // render the card
-    // card.render();
-  
+  renderCards() {  
     for(let i = 0; i < this.cards.length; i++){
       let card = new Card(this.cards[i]);
-      card.render();
+      card.render(i);
     }  
   }
 
