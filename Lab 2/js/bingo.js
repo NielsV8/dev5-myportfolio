@@ -36,8 +36,6 @@ export default class Bingo {
 
     // we start by rendering the cards to the screen
     this.renderCards();
-    Bingo.checkWinner();
-    Bingo.save();
 
     // then we load the saved bingo cards from localstorage to mark them as done
     Bingo.load();
@@ -56,11 +54,11 @@ export default class Bingo {
 
     // 🔥🔥🔥 TODO 6
     // count all cards that are marked as done (select done items and count them with .length)
-    /// let cardsDone = ;
-    // if (cardsDone.length === 5) {
+    let cardsDone = document.querySelectorAll(".bingo__card--done");
+    if (cardsDone.length === 5) {
     // show the animated gif to the winner
-    // document.querySelector(".bingo__overlay").style.display = "block";
-    // }
+    document.querySelector(".bingo__overlay").style.display = "block";
+    }
   }
 
   static save() {
