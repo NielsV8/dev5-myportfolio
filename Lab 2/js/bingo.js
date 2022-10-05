@@ -52,7 +52,6 @@ export default class Bingo {
   static save() {
     let cardsWon = [];
     let cards = document.querySelectorAll(".bingo__card--done");
-    localStorage.setItem("card", cardsWon);
 
     for (let i = 0; i < cards.length; i++) {
       cardsWon.push(cards[i].dataset.number);
