@@ -31,9 +31,9 @@ export default class Weather {
         fetch(url)
         .then(response => response.json())
         .then(data => {
-            console.log(data)
             localStorage.setItem('weather', JSON.stringify(data));
             localStorage.setItem('weatherTime', Date.now());
+            console.log(data);
             this.displayWeather(data);
         });
     }
@@ -50,40 +50,40 @@ export default class Weather {
         img.src = icon;
         document.querySelector(".weather__icon").appendChild(img);
 
-        if(weather.includes("Fog")){
-          this.getClearBoost();
-        } else if(weather == "Fog"){
-          this.getFogBoost();
+        if(weather.toLowerCase().includes("sun")){
+          this.getClear();
+        } else if(weather.toLowerCase().includes("clear")){
+          this.getFog();
         }
     }
 
-    getClearBoost(){
+    getClear(){
       const url = `https://pogoapi.net/api/v1/weather_boosts.json`;
       fetch(url)
       .then(response => response.json())
       .then(data => {
-        console.log(data);
-        this.displayClearBoost(data);
+        console.log(data.Clear[0]);
+        this.displayClear(data);
       });
     }
 
-    displayClearBoost(data){
-      const boost = data.Clear;
-      document.querySelector(".clear1").innerText = boost;
+    displayClear(data){
+      let boost = data.Clear[0];
+      document.querySelector(".boost").innerText = boost;
     }
 
-    getFogBoost(){
+    getFog(){
       const url = `https://pogoapi.net/api/v1/weather_boosts.json`;
       fetch(url)
       .then(response => response.json())
       .then(data => {
-        console.log(data);
-        this.displayClearBoost(data);
+        console.log(data.Clear[0]);
+        this.displayFog(data);
       });
     }
 
-    displayFogBoost(data){
-      const boost = data.Fog;
-      document.querySelector(".clear1").innerText = boost;
+    displayFog(data){
+      let boost = data.Fog[0];
+      document.querySelector(".boost").innerText = boost;
     }
   }
