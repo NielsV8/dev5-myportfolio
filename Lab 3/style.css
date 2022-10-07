@@ -19,3 +19,12 @@ font-size: 3rem;
 .weather__icon{
 text-align: center;
 }
+
+.boost{
+  font-size: 3rem;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 700;
+  color: black;
+  text-align: center;
+  text-shadow: 0 0 5px rgba(0,0,0,0.5);
+}
