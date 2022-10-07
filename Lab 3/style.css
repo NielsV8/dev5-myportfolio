@@ -1,6 +1,10 @@
+* {
+  font-family: "Poppins";
+  background-color: lightcyan;
+}
+
 .weather__temp{
   font-size: 3rem;
-  font-family: 'Roboto', sans-serif;
   font-weight: 700;
   color: black;
   text-align: center;
@@ -9,7 +13,6 @@
 
 .weather__condition{
 font-size: 3rem;
-  font-family: 'Roboto', sans-serif;
   font-weight: 700;
   color: black;
   text-align: center;
@@ -22,9 +25,40 @@ text-align: center;
 
 .boost{
   font-size: 3rem;
-  font-family: 'Roboto', sans-serif;
   font-weight: 700;
   color: black;
   text-align: center;
   text-shadow: 0 0 5px rgba(0,0,0,0.5);
+}
+
+.wrapper{
+  display: flex;
+  justify-content: center;
+  margin: 4em;
+}
+
+.icon {
+  border-radius: 100%;
+  height: 100px;
+  width: 100px;
+  margin:auto;
+  padding: 20px;
+}
+
+.dark{
+    background: #595761;
+    box-shadow: 0 0 20px #595761;
+}
+
+.grass {
+  background: #5FBD58;
+  box-shadow: 0 0 20px #5FBD58;
+}
+
+.grasstext{
+  color: #5FBD58;
+}
+
+.hidden{
+  display: none;
 }

@@ -52,8 +52,11 @@ export default class Weather {
 
         if(weather.toLowerCase().includes("clear")){
           this.getClear();
+          document.querySelector(".grass").classList.remove("hidden");
+          document.querySelector(".boost").classList.add("grasstext");
         } else if(weather.toLowerCase().includes("fog")){
           this.getFog();
+          document.querySelector(".dark").classList.remove("hidden");
         } else if(weather.toLowerCase().includes("rain")){
           this.getRainy();
         } else if(weather.toLowerCase().includes("cloudy")){
@@ -68,14 +71,13 @@ export default class Weather {
       fetch(url)
       .then(response => response.json())
       .then(data => {
-        console.log(data.Clear[0]);
         this.displayClear(data);
       });
     }
 
     displayClear(data){
       let boost = data.Clear[0];
-      document.querySelector(".boost").innerText = boost;
+      document.querySelector(".boost").innerText = boost + " type Pokémon are boosted in this weather!";
     }
 
     getFog(){
@@ -90,7 +92,7 @@ export default class Weather {
 
     displayFog(data){
       let boost = data.Fog[0];
-      document.querySelector(".boost").innerText = boost;
+      document.querySelector(".boost").innerText = boost + " type Pokémon are boosted in this weather!";
     }
 
     getRainy(){
@@ -105,7 +107,7 @@ export default class Weather {
 
     displayRainy(data){
       let boost = data.Rainy[0];
-      document.querySelector(".boost").innerText = boost;
+      document.querySelector(".boost").innerText = boost + " type Pokémon are boosted in this weather!";
     }
 
     getCloudy(){
@@ -120,7 +122,7 @@ export default class Weather {
 
     displayCloudy(data){
       let boost = data["Partly Cloudy"][0];
-      document.querySelector(".boost").innerText = boost;
+      document.querySelector(".boost").innerText = boost + " type Pokémon are boosted in this weather!";
     }
 
     getSnow(){
@@ -135,6 +137,6 @@ export default class Weather {
 
     displaySnow(data){
       let boost = data.Snow[0];
-      document.querySelector(".boost").innerText = boost;
+      document.querySelector(".boost").innerText = boost + "type Pokémon are boosted in this weather!";
     }
   }
