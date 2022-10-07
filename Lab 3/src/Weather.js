@@ -50,10 +50,16 @@ export default class Weather {
         img.src = icon;
         document.querySelector(".weather__icon").appendChild(img);
 
-        if(weather.toLowerCase().includes("sun")){
+        if(weather.toLowerCase().includes("clear")){
           this.getClear();
-        } else if(weather.toLowerCase().includes("clear")){
+        } else if(weather.toLowerCase().includes("fog")){
           this.getFog();
+        } else if(weather.toLowerCase().includes("rain")){
+          this.getRainy();
+        } else if(weather.toLowerCase().includes("cloudy")){
+          this.getCloudy();
+        } else if(weather.toLowerCase().includes("snow")){
+          this.getSnow();
         }
     }
 
@@ -84,6 +90,51 @@ export default class Weather {
 
     displayFog(data){
       let boost = data.Fog[0];
+      document.querySelector(".boost").innerText = boost;
+    }
+
+    getRainy(){
+      const url = `https://pogoapi.net/api/v1/weather_boosts.json`;
+      fetch(url)
+      .then(response => response.json())
+      .then(data => {
+        console.log(data.Clear[0]);
+        this.displayRainy(data);
+      });
+    }
+
+    displayRainy(data){
+      let boost = data.Rainy[0];
+      document.querySelector(".boost").innerText = boost;
+    }
+
+    getCloudy(){
+      const url = `https://pogoapi.net/api/v1/weather_boosts.json`;
+      fetch(url)
+      .then(response => response.json())
+      .then(data => {
+        console.log(data.Clear[0]);
+        this.displayCloudy(data);
+      });
+    }
+
+    displayCloudy(data){
+      let boost = data["Partly Cloudy"][0];
+      document.querySelector(".boost").innerText = boost;
+    }
+
+    getSnow(){
+      const url = `https://pogoapi.net/api/v1/weather_boosts.json`;
+      fetch(url)
+      .then(response => response.json())
+      .then(data => {
+        console.log(data.Clear[0]);
+        this.displaySnow(data);
+      });
+    }
+
+    displaySnow(data){
+      let boost = data.Snow[0];
       document.querySelector(".boost").innerText = boost;
     }
   }
