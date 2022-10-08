@@ -1,4 +1,4 @@
-### [What Pokémon Type Should You Use?](https://lab-3-theta.vercel.app/)
+### [What Pokémon Type Should You Use?](https://lab-3-nielsv8.vercel.app/)
 ---
 Certain Pokémon types become stronger with different weather conditions. It would be smart to use these Pokémon in battle to gain advantage over your opponent. Want to know what types are currently weather boosted?
 
