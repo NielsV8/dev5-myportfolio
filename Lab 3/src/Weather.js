@@ -57,12 +57,21 @@ export default class Weather {
         } else if(weather.toLowerCase().includes("fog")){
           this.getFog();
           document.querySelector(".dark").classList.remove("hidden");
-        } else if(weather.toLowerCase().includes("rain")){
+          document.querySelector(".boost").classList.add("darktext");
+        } else if(weather.toLowerCase().includes("rainy")){
           this.getRainy();
+          document.querySelector(".water").classList.remove("hidden");
+          document.querySelector(".boost").classList.add("watertext");
         } else if(weather.toLowerCase().includes("cloudy")){
           this.getCloudy();
+          document.querySelector(".normal").classList.remove("hidden");
+          document.querySelector(".boost").classList.add("normaltext");
         } else if(weather.toLowerCase().includes("snow")){
           this.getSnow();
+        } else if(weather.toLowerCase().includes("sunny")){
+          this.getSun();
+          document.querySelector(".fire").classList.remove("hidden");
+          document.querySelector(".boost").classList.add("firetext");
         }
     }
 
@@ -77,7 +86,7 @@ export default class Weather {
 
     displayClear(data){
       let boost = data.Clear[0];
-      document.querySelector(".boost").innerText = boost + " type Pokémon are boosted in this weather!";
+      document.querySelector(".boost").innerText = boost;
     }
 
     getFog(){
@@ -92,7 +101,7 @@ export default class Weather {
 
     displayFog(data){
       let boost = data.Fog[0];
-      document.querySelector(".boost").innerText = boost + " type Pokémon are boosted in this weather!";
+      document.querySelector(".boost").innerText = boost;
     }
 
     getRainy(){
@@ -107,7 +116,7 @@ export default class Weather {
 
     displayRainy(data){
       let boost = data.Rainy[0];
-      document.querySelector(".boost").innerText = boost + " type Pokémon are boosted in this weather!";
+      document.querySelector(".boost").innerText = boost;
     }
 
     getCloudy(){
@@ -122,7 +131,7 @@ export default class Weather {
 
     displayCloudy(data){
       let boost = data["Partly Cloudy"][0];
-      document.querySelector(".boost").innerText = boost + " type Pokémon are boosted in this weather!";
+      document.querySelector(".boost").innerText = boost;
     }
 
     getSnow(){
@@ -137,6 +146,21 @@ export default class Weather {
 
     displaySnow(data){
       let boost = data.Snow[0];
-      document.querySelector(".boost").innerText = boost + "type Pokémon are boosted in this weather!";
+      document.querySelector(".boost").innerText = boost;
+    }
+
+    getSun(){
+      const url = `https://pogoapi.net/api/v1/weather_boosts.json`;
+      fetch(url)
+      .then(response => response.json())
+      .then(data => {
+        console.log(data.Clear[0]);
+        this.displaySun(data);
+      });
+    }
+
+    displaySun(data){
+      let boost = data.Clear[2];
+      document.querySelector(".boost").innerText = boost;
     }
   }
