@@ -66,6 +66,10 @@ export default class Weather {
           this.getCloudy();
           document.querySelector(".normal").classList.remove("hidden");
           document.querySelector(".boost").classList.add("normaltext");
+        } else if(weather.toLowerCase().includes("overcast")){
+          this.getCloudy();
+          document.querySelector(".normal").classList.remove("hidden");
+          document.querySelector(".boost").classList.add("normaltext");
         } else if(weather.toLowerCase().includes("snow")){
           this.getSnow();
         } else if(weather.toLowerCase().includes("sunny")){
