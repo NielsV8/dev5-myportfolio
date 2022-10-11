@@ -1,7 +1,6 @@
-### [What Pokémon Type Should You Use?](https://lab-3-nielsv8.vercel.app/)
+### [What Coffee Should You Drink?](https://lab-3-nielsv8.vercel.app/)
 ---
-Certain Pokémon types become stronger with different weather conditions. It would be smart to use these Pokémon in battle to gain advantage over your opponent. Want to know what types are currently weather boosted?
+Too hot? Too cold? We'll pick the perfect coffee for your weather conditions!
 
 ```
-
 Click the link to find out!
