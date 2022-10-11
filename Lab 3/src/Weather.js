@@ -51,120 +51,130 @@ export default class Weather {
         document.querySelector(".weather__icon").appendChild(img);
 
         if(weather.toLowerCase().includes("clear")){
-          this.getClear();
-          document.querySelector(".grass").classList.remove("hidden");
-          document.querySelector(".boost").classList.add("grasstext");
+          this.getMazagran();
+          
         } else if(weather.toLowerCase().includes("fog")){
-          this.getFog();
-          document.querySelector(".dark").classList.remove("hidden");
-          document.querySelector(".boost").classList.add("darktext");
+          this.getRedEye();
         } else if(weather.toLowerCase().includes("rainy")){
-          this.getRainy();
-          document.querySelector(".water").classList.remove("hidden");
-          document.querySelector(".boost").classList.add("watertext");
+          this.getMocha();
         } else if(weather.toLowerCase().includes("cloudy")){
-          this.getCloudy();
-          document.querySelector(".normal").classList.remove("hidden");
-          document.querySelector(".boost").classList.add("normaltext");
+          this.getDoppio();
         } else if(weather.toLowerCase().includes("overcast")){
-          this.getCloudy();
-          document.querySelector(".normal").classList.remove("hidden");
-          document.querySelector(".boost").classList.add("normaltext");
+          this.getDoppio();
         } else if(weather.toLowerCase().includes("snow")){
-          this.getSnow();
+          this.getGuayoyo();
         } else if(weather.toLowerCase().includes("sunny")){
-          this.getSun();
-          document.querySelector(".fire").classList.remove("hidden");
-          document.querySelector(".boost").classList.add("firetext");
+          this.getColdBrew();
+        } else {
+          this.getDoppio();
         }
     }
 
-    getClear(){
-      const url = `https://pogoapi.net/api/v1/weather_boosts.json`;
+    getMazagran(){
+      const url = `https://api.sampleapis.com/coffee/iced`;
       fetch(url)
       .then(response => response.json())
       .then(data => {
-        this.displayClear(data);
+        this.displayMazagran(data);
       });
     }
 
-    displayClear(data){
-      let boost = data.Clear[0];
-      document.querySelector(".boost").innerText = boost;
+    displayMazagran(data){
+      let coffee = data[5].title;
+      let coffeepic = data[5].image;
+      let desc = data[5].description;
+      document.querySelector(".coffee").innerText = coffee;
+      document.querySelector(".pic").src = coffeepic;
+      document.querySelector(".info").innerText = desc;
     }
 
-    getFog(){
-      const url = `https://pogoapi.net/api/v1/weather_boosts.json`;
+    getRedEye(){
+      const url = `https://api.sampleapis.com/coffee/hot`;
       fetch(url)
       .then(response => response.json())
       .then(data => {
-        console.log(data.Clear[0]);
-        this.displayFog(data);
+        this.displayRedEye(data);
       });
     }
 
-    displayFog(data){
-      let boost = data.Fog[0];
-      document.querySelector(".boost").innerText = boost;
+    displayRedEye(data){
+      let coffee = data[7].title;
+      let coffeepic = data[7].image;
+      let desc = data[7].description;
+      document.querySelector(".coffee").innerText = coffee;
+      document.querySelector(".pic").src = coffeepic;
+      document.querySelector(".info").innerText = desc;
     }
 
-    getRainy(){
-      const url = `https://pogoapi.net/api/v1/weather_boosts.json`;
+    getMocha(){
+      const url = `https://api.sampleapis.com/coffee/hot`;
       fetch(url)
       .then(response => response.json())
       .then(data => {
-        console.log(data.Clear[0]);
-        this.displayRainy(data);
+        this.displayMocha(data);
       });
     }
 
-    displayRainy(data){
-      let boost = data.Rainy[0];
-      document.querySelector(".boost").innerText = boost;
+    displayMocha(data){
+      let coffee = data[11].title;
+      let coffeepic = data[11].image;
+      let desc = data[11].description;
+      document.querySelector(".coffee").innerText = coffee;
+      document.querySelector(".pic").src = coffeepic;
+      document.querySelector(".info").innerText = desc;
     }
 
-    getCloudy(){
-      const url = `https://pogoapi.net/api/v1/weather_boosts.json`;
+    getDoppio(){
+      const url = `https://api.sampleapis.com/coffee/hot`;
       fetch(url)
       .then(response => response.json())
       .then(data => {
-        console.log(data.Clear[0]);
-        this.displayCloudy(data);
+        this.displayDoppio(data);
       });
     }
 
-    displayCloudy(data){
-      let boost = data["Partly Cloudy"][0];
-      document.querySelector(".boost").innerText = boost;
+    displayDoppio(data){
+      let coffee = data[5].title;
+      let coffeepic = data[5].image;
+      let desc = data[5].description;
+      document.querySelector(".coffee").innerText = coffee;
+      document.querySelector(".pic").src = coffeepic;
+      document.querySelector(".info").innerText = desc;
     }
 
-    getSnow(){
-      const url = `https://pogoapi.net/api/v1/weather_boosts.json`;
+    getGuayoyo(){
+      const url = `https://api.sampleapis.com/coffee/hot`;
       fetch(url)
       .then(response => response.json())
       .then(data => {
-        console.log(data.Clear[0]);
-        this.displaySnow(data);
+        this.displayGuayoyo(data);
       });
     }
 
-    displaySnow(data){
-      let boost = data.Snow[0];
-      document.querySelector(".boost").innerText = boost;
+    displayGuayoyo(data){
+      let coffee = data[17].title;
+      let coffeepic = data[17].image;
+      let desc = data[17].description;
+      document.querySelector(".coffee").innerText = coffee;
+      document.querySelector(".pic").src = coffeepic;
+      document.querySelector(".info").innerText = desc;
     }
 
-    getSun(){
-      const url = `https://pogoapi.net/api/v1/weather_boosts.json`;
+    getColdBrew(){
+      const url = `https://api.sampleapis.com/coffee/iced`;
       fetch(url)
       .then(response => response.json())
       .then(data => {
-        console.log(data.Clear[0]);
-        this.displaySun(data);
+        this.displayColdBrew(data);
       });
     }
 
-    displaySun(data){
-      let boost = data.Clear[2];
-      document.querySelector(".boost").innerText = boost;
+    displayColdBrew(data){
+      let coffee = data[2].title;
+      let coffeepic = data[2].image;
+      let desc = data[2].description;
+      document.querySelector(".coffee").innerText = coffee;
+      document.querySelector(".pic").src = coffeepic;
+      document.querySelector(".info").innerText = desc;
     }
   }
