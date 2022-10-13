@@ -1,23 +1,36 @@
-import './style.css'
-import javascriptLogo from './javascript.svg'
-import { setupCounter } from './counter.js'
+import './style.css';
+import * as THREE from 'three';
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 
-document.querySelector('#app').innerHTML = `
-  <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="/vite.svg" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank">
-      <img src="${javascriptLogo}" class="logo vanilla" alt="JavaScript logo" />
-    </a>
-    <h1>Hello Vite!</h1>
-    <div class="card">
-      <button id="counter" type="button"></button>
-    </div>
-    <p class="read-the-docs">
-      Click on the Vite logo to learn more
-    </p>
-  </div>
-`
+      const scene = new THREE.Scene();
+      scene.background = new THREE.Color(0xfffffff);
+			const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
 
-setupCounter(document.querySelector('#counter'))
+			const renderer = new THREE.WebGLRenderer();
+			renderer.setSize( window.innerWidth, window.innerHeight );
+			document.body.appendChild( renderer.domElement );
+
+      const controls = new OrbitControls( camera, renderer.domElement );
+      const textureLoader = new THREE.TextureLoader();
+
+      const wallTexture = textureLoader.load( "./assests/wall.jpg" );
+      const planeGeometry = new THREE.PlaneGeometry( 1, 1 );
+      const planeMaterial = new THREE.MeshBasicMaterial( {color: 0xffff00, side: THREE.DoubleSide} );
+      const planeMesh = new THREE.Mesh( planeGeometry, planeMaterial );
+      planeMaterial.map = wallTexture;
+      scene.add( planeMesh );  
+
+
+      
+      const light = new THREE.DirectionalLight( 0xffff00, 1 );
+      scene.add( light );
+
+			camera.position.z = 5;
+
+			function animate() {
+				requestAnimationFrame( animate );
+				renderer.render( scene, camera );
+			};
+
+			animate();
