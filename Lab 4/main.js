@@ -13,23 +13,39 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 
       const controls = new OrbitControls( camera, renderer.domElement );
       const textureLoader = new THREE.TextureLoader();
+      const gltfLoader = new GLTFLoader();
 
-      const planeGeometry = new THREE.PlaneGeometry( 1, 1 );
+      const addPig = (x, y, z) => {
+        let pig;
+        gltfLoader.load("./gltf/scene.gltf", (gltf) => {
+          pig = gltf.scene;
+          pig.position.set(x, y, z);	
+          pig.scale.set(0.5, 0.5, 0.5);
+          scene.add(gltf.scene);
+        }); 
+      }
+
+      for(let i = 0; i < 5; i++){
+        let sign = Math.random() < 0.5 ? -1 : 1;
+        const x = Math.random() * 3 * sign;
+      
+        const y = -0.5;
+      
+        sign = Math.random() < 0.5 ? -1 : 1;
+        const z = Math.random() * 3 * sign;
+        addPig(x, y, z);
+      }
+
+      const planeGeometry = new THREE.PlaneGeometry( 2, 1 );
       const planeMaterial = new THREE.MeshBasicMaterial( {color: 0xAA4A44, side: THREE.DoubleSide} );
       const planeMesh = new THREE.Mesh( planeGeometry, planeMaterial );
       const planeMesh2 = new THREE.Mesh( planeGeometry, planeMaterial );
-      const planeMesh3 = new THREE.Mesh( planeGeometry, planeMaterial );
-      const planeMesh4 = new THREE.Mesh( planeGeometry, planeMaterial );
-      planeMesh.position.set(0.5, 0, 0);
+  
+      planeMesh.position.set(0.5, 0, 0.5);
       planeMesh.rotation.y = 90 * Math.PI / 180;
-      planeMesh2.position.set(0, 0, -0.5);
-      planeMesh3.rotation.y = 90 * Math.PI / 180;
-      planeMesh3.position.set(0.5, 0, 1);
-      planeMesh4.position.set(-1, 0, -0.5);
+      planeMesh2.position.set(-0.5, 0, -0.5);
       scene.add( planeMesh ); 
-      scene.add( planeMesh2 ); 
-      scene.add( planeMesh3 ); 
-      scene.add( planeMesh4 ); 
+      scene.add( planeMesh2 );  
       
       //add floor
       const floorTexture = textureLoader.load( "./assests/floor.jpg" );
@@ -87,7 +103,7 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
       scene.add( roofConeMesh );
 
       //add light
-      const light = new THREE.PointLight( 0xffffff, 1, 100 );
+      const light = new THREE.AmbientLight( 0xffffff, 1, 100 );
       light.position.set( 0, 0, 0 );
       scene.add( light );
 
@@ -96,6 +112,5 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 			function animate() {
 				requestAnimationFrame( animate );
 				renderer.render( scene, camera );
-			};
-
+      }
 			animate();
