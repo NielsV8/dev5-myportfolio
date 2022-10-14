@@ -40,12 +40,20 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
       const planeMaterial = new THREE.MeshBasicMaterial( {color: 0xAA4A44, side: THREE.DoubleSide} );
       const planeMesh = new THREE.Mesh( planeGeometry, planeMaterial );
       const planeMesh2 = new THREE.Mesh( planeGeometry, planeMaterial );
+      const planeMesh3 = new THREE.Mesh( planeGeometry, planeMaterial );
+      const planeMesh4 = new THREE.Mesh( planeGeometry, planeMaterial );
   
       planeMesh.position.set(0.5, 0, 0.5);
       planeMesh.rotation.y = 90 * Math.PI / 180;
       planeMesh2.position.set(-0.5, 0, -0.5);
+      planeMesh3.position.set(-0.5, 0, 1.5);
+      planeMesh4.position.set(-1.5, 0, 0.5);
+      planeMesh4.rotation.y = 90 * Math.PI / 180;
+
       scene.add( planeMesh ); 
-      scene.add( planeMesh2 );  
+      scene.add( planeMesh2 );
+      scene.add( planeMesh3 );  
+      scene.add( planeMesh4 );
       
       //add floor
       const floorTexture = textureLoader.load( "./assests/floor.jpg" );
@@ -101,6 +109,16 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
       roofConeMesh.position.set(-0.5, 1, 0.5);
       roofConeMesh.rotation.y = 45 * Math.PI / 180;
       scene.add( roofConeMesh );
+
+      //add door
+      const doorTexture = textureLoader.load( "./assests/door.jpg" );
+      const doorGeometry = new THREE.PlaneGeometry( 0.5, 1 );
+      const doorMaterial = new THREE.MeshBasicMaterial( {color: 0x8B4513, side: THREE.DoubleSide} );
+      const doorMesh = new THREE.Mesh( doorGeometry, doorMaterial );
+      doorMesh.position.set(0.51, 0, 0.5);
+      doorMesh.rotation.y = 90 * Math.PI / 180;
+      doorMaterial.map = doorTexture;
+      scene.add( doorMesh );
 
       //add light
       const light = new THREE.AmbientLight( 0xffffff, 1, 100 );
