@@ -15,17 +15,17 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
       const textureLoader = new THREE.TextureLoader();
       const gltfLoader = new GLTFLoader();
 
-      const addPig = (x, y, z) => {
-        let pig;
-        gltfLoader.load("./gltf/scene.gltf", (gltf) => {
-          pig = gltf.scene;
-          pig.position.set(x, y, z);	
-          pig.scale.set(0.5, 0.5, 0.5);
+      let grass;
+      const addGrass = (x, y, z) => {
+        gltfLoader.load("./gltf/grass/scene.gltf", (gltf) => {
+          grass = gltf.scene;
+          grass.position.set(x, y, z);
+          grass.scale.set(10, 10, 10);
           scene.add(gltf.scene);
         }); 
       }
 
-      for(let i = 0; i < 5; i++){
+      for(let i = 0; i < 20; i++){
         let sign = Math.random() < 0.5 ? -1 : 1;
         const x = Math.random() * 3 * sign;
       
@@ -33,8 +33,18 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
       
         sign = Math.random() < 0.5 ? -1 : 1;
         const z = Math.random() * 3 * sign;
-        addPig(x, y, z);
+        addGrass(x, y, z);
       }
+
+      //add pig to scene
+      let pig;
+      gltfLoader.load("./gltf/pig/scene.gltf", (gltf) => {
+        pig = gltf.scene;
+        pig.position.set(-4, -0.5, 0);
+        pig.scale.set(0.5, 0.5, 0.5);
+        scene.add((gltf.scene));
+      });
+
 
       const planeGeometry = new THREE.PlaneGeometry( 2, 1 );
       const planeMaterial = new THREE.MeshBasicMaterial( {color: 0xAA4A44, side: THREE.DoubleSide} );
@@ -115,10 +125,17 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
       const doorGeometry = new THREE.PlaneGeometry( 0.5, 1 );
       const doorMaterial = new THREE.MeshBasicMaterial( {color: 0x8B4513, side: THREE.DoubleSide} );
       const doorMesh = new THREE.Mesh( doorGeometry, doorMaterial );
-      doorMesh.position.set(0.51, 0, 0.5);
-      doorMesh.rotation.y = 90 * Math.PI / 180;
+      doorMesh.position.set(-0.5, 0, 1.51);
       doorMaterial.map = doorTexture;
       scene.add( doorMesh );
+
+      const nameTexture = textureLoader.load( "./assests/naam.jpg" );
+      const nameGeometry = new THREE.PlaneGeometry( 0.5, 0.5 );
+      const nameMaterial = new THREE.MeshBasicMaterial( {color: 0x8B4513, side: THREE.DoubleSide} );
+      const nameMesh = new THREE.Mesh( nameGeometry, nameMaterial );
+      nameMesh.position.set(0.12, 0, 1.51);
+      nameMaterial.map = nameTexture;
+      scene.add( nameMesh );
 
       //add light
       const light = new THREE.AmbientLight( 0xffffff, 1, 100 );
@@ -130,5 +147,7 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 			function animate() {
 				requestAnimationFrame( animate );
 				renderer.render( scene, camera );
+
+        if(pig) pig.rotation.y += 0.01;
       }
 			animate();
