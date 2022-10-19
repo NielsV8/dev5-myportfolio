@@ -17,7 +17,7 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 
       let grass;
       const addGrass = (x, y, z) => {
-        gltfLoader.load("./gltf/grass/scene.gltf", (gltf) => {
+        gltfLoader.load("./assets/models/grass/scene.gltf", (gltf) => {
           grass = gltf.scene;
           grass.position.set(x, y, z);
           grass.scale.set(10, 10, 10);
@@ -38,7 +38,7 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 
       //add pig to scene
       let pig;
-      gltfLoader.load("./gltf/pig/scene.gltf", (gltf) => {
+      gltfLoader.load("./assets/models/pig/scene.gltf", (gltf) => {
         pig = gltf.scene;
         pig.position.set(-4, -0.5, 0);
         pig.scale.set(0.5, 0.5, 0.5);
@@ -66,7 +66,7 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
       scene.add( planeMesh4 );
       
       //add floor
-      const floorTexture = textureLoader.load( "./assests/floor.jpg" );
+      const floorTexture = textureLoader.load( "./assets/textures/floor.jpg" );
       const floorGeometry = new THREE.PlaneGeometry( 1, 1 );
       const floorMaterial = new THREE.MeshBasicMaterial( {color: 0xffffff, side: THREE.DoubleSide} );
       const floorMesh1 = new THREE.Mesh( floorGeometry, floorMaterial );
@@ -92,7 +92,7 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
       scene.add( floorMesh4 );
 
       //add ground
-      const groundTexture = textureLoader.load( "./assests/grass.jpg" );
+      const groundTexture = textureLoader.load( "./assets/textures/grass.jpg" );
       const groundGeometry = new THREE.PlaneGeometry( 25, 25 );
       const groundMaterial = new THREE.MeshBasicMaterial( {color: 0xffffff, side: THREE.DoubleSide} );
       const groundMesh = new THREE.Mesh( groundGeometry, groundMaterial );
@@ -102,7 +102,7 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
       scene.add( groundMesh );
 
       //add card
-      const cardTexture = textureLoader.load( "./assests/logo.jpg" );
+      const cardTexture = textureLoader.load( "./assets/textures/logo.jpg" );
       const cardGeometry = new THREE.CircleGeometry( 0.2, 32 );
       const cardMaterial = new THREE.MeshBasicMaterial( {color: 0xffffff, side: THREE.DoubleSide} );
       const cardMesh = new THREE.Mesh( cardGeometry, cardMaterial );
@@ -111,7 +111,7 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
       scene.add( cardMesh );
 
       //add roof cone
-      const roofTexture = textureLoader.load( "./assests/roof.jpg" );
+      const roofTexture = textureLoader.load( "./assets/textures/roof.jpg" );
       const roofConeGeometry = new THREE.ConeGeometry( 1.5, 1, 4 );
       const roofConeMaterial = new THREE.MeshBasicMaterial( {color: 0xffffff, side: THREE.DoubleSide} );
       const roofConeMesh = new THREE.Mesh( roofConeGeometry, roofConeMaterial );
@@ -121,7 +121,7 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
       scene.add( roofConeMesh );
 
       //add door
-      const doorTexture = textureLoader.load( "./assests/door.jpg" );
+      const doorTexture = textureLoader.load( "./assets/textures/door.jpg" );
       const doorGeometry = new THREE.PlaneGeometry( 0.5, 1 );
       const doorMaterial = new THREE.MeshBasicMaterial( {color: 0x8B4513, side: THREE.DoubleSide} );
       const doorMesh = new THREE.Mesh( doorGeometry, doorMaterial );
@@ -129,7 +129,7 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
       doorMaterial.map = doorTexture;
       scene.add( doorMesh );
 
-      const nameTexture = textureLoader.load( "./assests/naam.jpg" );
+      const nameTexture = textureLoader.load( "./assets/textures/naam.jpg" );
       const nameGeometry = new THREE.PlaneGeometry( 0.5, 0.5 );
       const nameMaterial = new THREE.MeshBasicMaterial( {color: 0x8B4513, side: THREE.DoubleSide} );
       const nameMesh = new THREE.Mesh( nameGeometry, nameMaterial );
@@ -149,5 +149,5 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 				renderer.render( scene, camera );
 
         if(pig) pig.rotation.y += 0.01;
-      }
+      };
 			animate();
